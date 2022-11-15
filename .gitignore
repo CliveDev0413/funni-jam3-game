@@ -1,3 +1,8 @@
+# Files with no extension (executables)
+*
+!/**/
+!*.*
+
 # Prerequisites
 *.d
 
@@ -33,4 +38,3 @@
 
 # Compiled Test Build
 src/main.dSYM
-src/main
