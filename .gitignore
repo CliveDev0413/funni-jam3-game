@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Compiled Test Build
+src/main.dSYM
+src/main
