@@ -12,7 +12,7 @@
   				"-g",
 				"${fileDirname}/*.cpp",
   				"-o",
-  				"${fileDirname}/${fileBasenameNoExtension}",
+  				"${fileDirname}/main",
   				"`pkg-config --libs --cflags raylib`"
 			],
 			"options": {

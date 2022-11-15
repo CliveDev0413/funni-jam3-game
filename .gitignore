@@ -38,3 +38,6 @@
 
 # Compiled Test Build
 src/main.dSYM
+
+# Build Folder
+build/

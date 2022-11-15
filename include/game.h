@@ -4,8 +4,9 @@
 #include "raylib.h"
 #include <iostream>
 
-void Update();
 void Start();
+void Update();
 void Draw();
+void End();
 
 #endif

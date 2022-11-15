@@ -4,19 +4,17 @@
 int main()
 {
     InitWindow(800, 600, "Hello World");
+    SetWindowState(FLAG_VSYNC_HINT);
 
     Start();
     
     while (!WindowShouldClose())
     {
         Update();
-
-        BeginDrawing();
-            DrawFPS(10, 10);
-            Draw();
-        EndDrawing();
+        Draw();
     }
     
+    End();
     CloseWindow();
 
     return 0;
