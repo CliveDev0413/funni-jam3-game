@@ -1,6 +1,8 @@
 #include "../include/game.h"
 #include "../include/player.h"
 
+Rectangle window;
+
 enum GAME_STATE
 {
     menu,
@@ -8,52 +10,49 @@ enum GAME_STATE
     end
 };
 
-Player player(50, 50, 300, 5, 5);
+Player player(50, 466, 300, 4, 4);
+
+Texture2D sky;
+Texture2D ground;
+Texture2D city;
+Texture2D city2;
 
 //Runs at the start of the game. Initialize anything that's needed.
 void Start()
 {
+    window = {0, 0, 800, 600};
+
     player.Load((char*)"../assets/player/Tony.png");
     player.Sprite.width = player.Sprite.width * player.Scale.x;
     player.Sprite.height = player.Sprite.height * player.Scale.y;
+
+    sky = LoadTexture("../assets/environment/Sky.png");
+    city = LoadTexture("../assets/environment/CityBG.png");
+    city2 = LoadTexture("../assets/environment/CityBG.png");
+    ground = LoadTexture("../assets/environment/Ground.png");
+
+    player.SetState(RUNNING);
 }
 
 //Runs every frame.
 void Update()
 {
-    player.Animate();
-
-    player.SetState(IDLE);
-
-    if(IsKeyDown(KEY_A))
-    {
-        player.Position.x -= player.MoveSpeed * GetFrameTime(); 
-        player.SetState(RUNNING);
-    }
-    if(IsKeyDown(KEY_D))
-    {
-        player.Position.x += player.MoveSpeed * GetFrameTime();
-        player.SetState(RUNNING);
-    }
-    if(IsKeyDown(KEY_W))
-    {
-        player.Position.y -= player.MoveSpeed * GetFrameTime();
-        player.SetState(RUNNING);
-    }
-    if(IsKeyDown(KEY_S))
-    {
-        player.Position.y += player.MoveSpeed * GetFrameTime();
-        player.SetState(RUNNING);
-    }
+    player.Animate(0.09f);
 }
 
 //Draws the graphics.
 void Draw()
 {
     BeginDrawing();
-        DrawFPS(10, 10);
+
         ClearBackground(WHITE);
+        DrawTexture(sky, 0, 0, WHITE);
+        DrawTexture(city, 0, 0, WHITE);
+        DrawTexture(city2, city.width, 0, WHITE);
+        DrawTexture(ground, 0, 0, WHITE);
         player.Draw();
+        DrawFPS(10, 10);
+        
     EndDrawing();
 }
 
@@ -61,4 +60,8 @@ void Draw()
 void End()
 {
     player.Unload();
+    UnloadTexture(sky);
+    UnloadTexture(city);
+    UnloadTexture(city2);
+    UnloadTexture(ground);
 }
