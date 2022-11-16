@@ -21,7 +21,6 @@ class Player
         int startFrame;
         int endFrame;
         PlayerStates playerState;
-        bool restartFrame;
         
     public:
         Texture2D Sprite;
